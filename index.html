@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -67,8 +67,6 @@
             transition: 0.3s ease; 
             border: 1px solid var(--glass-border);
             cursor: pointer;
-            
-            /* Preparação para animação via JS */
             opacity: 0; 
             transform: translateY(20px);
         }
@@ -96,9 +94,7 @@
         }
 
         h1 { font-size: 1.5rem; margin: 5px 0; font-weight: 700; text-align: center;}
-        
         p { font-size: 0.9rem; opacity: 0.9; text-align: center; margin-bottom: 10px; font-weight: 400; display: flex; align-items: center; gap: 6px; justify-content: center; }
-        
         .label { font-weight: 600; font-size: 0.85rem; color: var(--accent); margin-top: 8px; text-align: center;}
 
         @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
@@ -107,7 +103,6 @@
 <body>
 
     <div class="bento-grid">
-        
         <a href="" target="_blank" class="card full" id="card-profile">
             <img src="" alt="Foto de Perfil" class="profile-pic" id="foto-perfil">
             <h1 id="nome-colaborador">...</h1>
@@ -139,36 +134,18 @@
     </div>
 
     <script>
-        // ==========================================
-        // ÁREA DE DADOS DO COLABORADOR
-        // ==========================================
         const colaborador = {
             nome: "Augusto Costa",
             cargo: "Diretoria",
-            
-            // E-mail Pessoal
             email: "Draugustocostajr@gmail.com", 
-            
-            // LinkedIn vazio (ícone sumirá)
             linkedinPessoal: "",
-            
-            // Foto vazia (ícone padrão aparecerá)
-            fotoUrl: "", 
-            
-            // WhatsApp
+            // Tentativa com link de renderização alternativa
+            fotoUrl: "https://lh3.googleusercontent.com/d/17BqT6g4CK-O8sqyQVj0KI9nMNueTwEAl", 
             whatsapp: "5518996317700", 
-            
-            // Instagram Pessoal (Substituindo o da empresa)
             instagram: "https://www.instagram.com/augustocosta.jr/", 
-            
-            // Link do Buscador
             buscaDentista: "https://seguro.fisistemas.com.br/EncontreSeuDentista/pesquisa;s=336017"
         };
 
-        // ==========================================
-        // LÓGICA DO SISTEMA
-        // ==========================================
-        
         document.title = `${colaborador.nome} | Contato`;
         document.getElementById('nome-colaborador').innerText = colaborador.nome;
         document.getElementById('cargo-colaborador').innerText = colaborador.cargo;
@@ -214,9 +191,7 @@
         });
 
         function gerarVcard() {
-            // Usa o Insta Pessoal no vCard já que não tem LinkedIn
             const socialLink = colaborador.linkedinPessoal || colaborador.instagram;
-            
             const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${colaborador.nome}\nTITLE:${colaborador.cargo}\nTEL;TYPE=CELL:${colaborador.whatsapp}\nEMAIL:${colaborador.email}\nURL:${socialLink}\nEND:VCARD`;
             const link = document.createElement('a');
             link.href = URL.createObjectURL(new Blob([vcard], { type: 'text/vcard' }));
